@@ -1,5 +1,5 @@
 # CustomFolder
-## Copyright (c) 2016 r3pear
+Copyright (c) 2016 r3pear
 
 Your own Folding@Home or Boinc system. Kinda' crappy.
 
