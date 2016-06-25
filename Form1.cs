@@ -45,6 +45,11 @@ namespace CustomFolder
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string url = textBox1.Text;
+            if (!url.StartsWith("http://") && !url.StartsWith("https://") && !url.StartsWith("ftp://"))
+            {
+                url = "http://" + url;
+            }
             WebClient client = new WebClient();
             string postData = "Result=" + MathParser(client.DownloadString(textBox1.Text)).ToString();
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
