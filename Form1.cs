@@ -1,4 +1,4 @@
-﻿/*
+/*
 The MIT License (MIT)
 
 Copyright (c) 2016 r3pear
@@ -51,9 +51,9 @@ namespace CustomFolder
                 url = "http://" + url;
             }
             WebClient client = new WebClient();
-            string postData = "Result=" + MathParser(client.DownloadString(textBox1.Text)).ToString();
+            string postData = "Result=" + MathParser(client.DownloadString(url)).ToString();
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            WebRequest request = WebRequest.Create(textBox1.Text);
+            WebRequest request = WebRequest.Create(url);
             request.Credentials = CredentialCache.DefaultCredentials;
             ((HttpWebRequest)request).UserAgent = "CustomFolder Web Poster";
             request.Method = "POST";
@@ -77,8 +77,19 @@ namespace CustomFolder
             MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
             sc.Language = "VBScript";
             object result = sc.Eval(input);
-            label2.Text = input + " = " + result.ToString();
-            return double.Parse(result.ToString());
+            if (result.ToString() == "True")
+            {
+                label2.Text = input + " = 1";
+                return 1;
+            } else if (result.ToString() == "False")
+            {
+                label2.Text = input + " = 0";
+                return 0;
+            } else
+            {
+                label2.Text = input + " = " + result.ToString();
+                return double.Parse(result.ToString());
+            }
         }
     }
 }
